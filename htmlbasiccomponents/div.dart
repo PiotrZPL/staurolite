@@ -1,7 +1,7 @@
 import 'htmlwidget.dart';
 
-class Nav extends HtmlWidget{
-  Nav({
+class Div extends HtmlWidget{
+  Div({
     widget_class,
     style,
     id,
@@ -11,7 +11,7 @@ class Nav extends HtmlWidget{
   final List<HtmlWidget?>? widgets;
 
   String toHTML() {
-    var output = "<nav ";
+    var output = "<div ";
     if (widget_class != null) {
       output += """class="$widget_class" """;
     }
@@ -29,6 +29,6 @@ class Nav extends HtmlWidget{
         }
       });
     }
-    return output + "</nav>";
+    return output + "</div>";
   }
 }

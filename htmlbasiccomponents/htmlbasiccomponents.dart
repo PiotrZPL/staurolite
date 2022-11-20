@@ -1,6 +1,7 @@
 library htmlbasiccomponents;
 
 export 'body.dart';
+export 'div.dart';
 export 'head.dart';
 export 'header.dart';
 export 'heading.dart';
