@@ -1,9 +1,4 @@
-import 'hyperlink.dart';
-import 'paragraph.dart';
-import 'heading.dart';
-import 'body.dart';
-import 'head.dart';
-import 'htmldoc.dart';
+import 'htmlbasiccomponents/htmlbasiccomponents.dart';
 
 void main() {
   var myHyperlink = Hyperlink(text: "Piotr Lange", href: "piotrlange.de");
