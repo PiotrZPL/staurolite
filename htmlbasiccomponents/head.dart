@@ -8,14 +8,14 @@ class Head {
 
   String toHTML() {
     var output = "<head>";
-    output += "<title>$title</title>";
+    output += "\n<title>$title</title>";
     if (widgets != null) {
       widgets!.forEach((element) {
         if (element != null) {
-          output += element.toHTML();
+          output += "\n" + element.toHTML();
         }
       });
     }
-    return output + "</head>";
+    return output + "\n</head>";
   }
 }

@@ -12,10 +12,10 @@ class Body {
     if (widgets != null) {
       widgets!.forEach((element) {
         if (element != null) {
-          output += element.toHTML();
+          output += "\n" + element.toHTML();
         }
       });
     }
-    return output + "</body>";
+    return output + "\n</body>";
   }
 }

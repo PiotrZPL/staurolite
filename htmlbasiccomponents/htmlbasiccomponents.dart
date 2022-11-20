@@ -8,4 +8,6 @@ export 'htmldoc.dart';
 export 'hyperlink.dart';
 export 'link.dart';
 export 'meta.dart';
+export 'nav.dart';
 export 'paragraph.dart';
+export 'style.dart';
