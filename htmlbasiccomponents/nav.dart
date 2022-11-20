@@ -25,10 +25,10 @@ class Nav extends HtmlWidget{
     if (widgets != null) {
       widgets!.forEach((element) {
         if (element != null) {
-          output += element.toHTML();
+          output += "\n" + element.toHTML();
         }
       });
     }
-    return output + "</nav>";
+    return output + "\n</nav>";
   }
 }
