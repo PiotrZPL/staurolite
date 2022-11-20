@@ -1,7 +1,12 @@
 import 'htmlwidget.dart';
 
 class Meta extends HtmlWidget {
-  Meta({this.charset, this.content, this.http_equiv, this.name});
+  Meta({
+    this.charset,
+    this.content,
+    this.http_equiv,
+    this.name
+  });
 
   final String? charset;
   final String? content;
