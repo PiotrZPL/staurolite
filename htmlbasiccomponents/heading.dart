@@ -34,7 +34,10 @@ class Heading extends HtmlWidget {
         }
       });
     }
-    output = output.trim() + "$text\n</h${level.toString()}>";
+    if (text != null) {
+      output = output.trim() + text!;
+    }
+    output += "\n</h${level.toString()}>";
     return output;
   }
 }
