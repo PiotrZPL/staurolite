@@ -1,30 +1,19 @@
 import 'htmlwidget.dart';
 
-class Hyperlink extends HtmlWidget {
-  Hyperlink({
-    this.text,
-    this.href,
-    this.onClick,
-    this.widgets,
+class Span extends HtmlWidget{
+  Span({
     widget_class,
     style,
     id,
+    this.widgets,
+    this.text
   }) : super(widget_class: widget_class, style: style, id: id);
 
-  final String? text;
-  final String? href;
-  final String? onClick;
   final List<HtmlWidget?>? widgets;
+  final String? text;
 
-  @override
   String toHTML() {
-    var output = "<a ";
-    if (href != null) {
-      output += """href="$href" """;
-    }
-    if (onClick != null) {
-      output += """onClick="$onClick" """;
-    }
+    var output = "<span ";
     if (widget_class != null) {
       output += """class="$widget_class" """;
     }
@@ -42,10 +31,6 @@ class Hyperlink extends HtmlWidget {
         }
       });
     }
-    if (text != null) {
-      output += text!;
-    }
-    output += "</a>";
-    return output;
+    return output + "$text</span>";
   }
 }

@@ -5,10 +5,13 @@ class Div extends HtmlWidget{
     widget_class,
     style,
     id,
-    this.widgets
-  }) : super(widget_class: widget_class, style: style, id: id);
+    title,
+    this.widgets,
+    this.onClick
+  }) : super(widget_class: widget_class, style: style, id: id, title: title);
 
   final List<HtmlWidget?>? widgets;
+  final String? onClick;
 
   String toHTML() {
     var output = "<div ";
@@ -20,6 +23,12 @@ class Div extends HtmlWidget{
     }
     if (id != null) {
       output += """id="$id" """;
+    }
+    if (title != null) {
+      output += """title="$title" """;
+    }
+    if (onClick != null) {
+      output += """onClick="$onClick" """;
     }
     output = output.trim() + ">";
     if (widgets != null) {

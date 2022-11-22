@@ -1,19 +1,20 @@
 import 'htmlwidget.dart';
 
-class Paragraph extends HtmlWidget {
-  Paragraph({
+class UnorderedList extends HtmlWidget{
+  UnorderedList({
     widget_class,
     style,
     id,
     title,
-    this.text,
+    this.onClick,
+    this.widgets
   }) : super(widget_class: widget_class, style: style, id: id, title: title);
 
-  final String? text;
+  final List<HtmlWidget?>? widgets;
+  final String? onClick;
 
-  @override
   String toHTML() {
-    var output = "<p ";
+    var output = "<ul ";
     if (widget_class != null) {
       output += """class="$widget_class" """;
     }
@@ -26,11 +27,17 @@ class Paragraph extends HtmlWidget {
     if (title != null) {
       output += """title="$title" """;
     }
-    output = output.trim() + ">";
-    if (text != null) {
-      output += text!;
+    if (onClick != null) {
+      output += """onClick="$onClick" """;
     }
-    output += "</p>";
-    return output;
+    output = output.trim() + ">";
+    if (widgets != null) {
+      widgets!.forEach((element) {
+        if (element != null) {
+          output += "\n" + element.toHTML();
+        }
+      });
+    }
+    return output + "\n</ul>";
   }
 }

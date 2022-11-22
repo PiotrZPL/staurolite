@@ -35,7 +35,7 @@ class Heading extends HtmlWidget {
       });
     }
     if (text != null) {
-      output = output.trim() + text!;
+      output = output.trim() + text!.replaceAll("\n", "<br>");
     }
     output += "\n</h${level.toString()}>";
     return output;

@@ -1,19 +1,18 @@
 import 'htmlwidget.dart';
 
-class Paragraph extends HtmlWidget {
-  Paragraph({
+class IndicateText extends HtmlWidget{
+  IndicateText({
     widget_class,
     style,
     id,
     title,
-    this.text,
+    this.onClick,
   }) : super(widget_class: widget_class, style: style, id: id, title: title);
 
-  final String? text;
+  final String? onClick;
 
-  @override
   String toHTML() {
-    var output = "<p ";
+    var output = "<i ";
     if (widget_class != null) {
       output += """class="$widget_class" """;
     }
@@ -26,11 +25,10 @@ class Paragraph extends HtmlWidget {
     if (title != null) {
       output += """title="$title" """;
     }
-    output = output.trim() + ">";
-    if (text != null) {
-      output += text!;
+    if (onClick != null) {
+      output += """onClick="$onClick" """;
     }
-    output += "</p>";
-    return output;
+    output = output.trim() + ">";
+    return output + "</i>";
   }
 }

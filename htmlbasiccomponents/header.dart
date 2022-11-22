@@ -1,7 +1,12 @@
 import 'htmlwidget.dart';
 
-class Header {
-  const Header({this.widgets});
+class Header extends HtmlWidget{
+  Header({
+    widget_class,
+    style,
+    id,
+    this.widgets
+  }) : super(widget_class: widget_class, style: style, id: id);
 
   final List<HtmlWidget?>? widgets;
 
@@ -10,10 +15,10 @@ class Header {
     if (widgets != null) {
       widgets!.forEach((element) {
         if (element != null) {
-          output += element.toHTML();
+          output += "\n" + element.toHTML();
         }
       });
     }
-    return output + "</header>";
+    return output + "\n</header>";
   }
 }
