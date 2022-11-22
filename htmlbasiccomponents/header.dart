@@ -11,7 +11,11 @@ class Header extends HtmlWidget{
   final List<HtmlWidget?>? widgets;
 
   String toHTML() {
-    var output = "<header>";
+    var output = "<header ";
+    if (widget_class != null) {
+      output += """class="$widget_class" """;
+    }
+    output = output.trim() + ">";
     if (widgets != null) {
       widgets!.forEach((element) {
         if (element != null) {

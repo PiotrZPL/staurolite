@@ -1,8 +1,11 @@
 library htmlbasiccomponents;
 
+export 'article.dart';
 export 'body.dart';
 export 'boldText.dart';
+export 'button.dart';
 export 'div.dart';
+export 'footer.dart';
 export 'head.dart';
 export 'header.dart';
 export 'heading.dart';
@@ -12,6 +15,7 @@ export 'img.dart';
 export 'indicateText.dart';
 export 'link.dart';
 export 'listItem.dart';
+export 'main.dart';
 export 'meta.dart';
 export 'nav.dart';
 export 'paragraph.dart';
