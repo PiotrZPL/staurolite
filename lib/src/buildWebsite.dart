@@ -3,24 +3,25 @@ import 'website.dart';
 import 'dart:io';
 
 void buildWebsite(Website website) async {
+  String buildDir = "build/";
   for (var page in website.listOfHtml) {
-    final newFile = await File(page.path).create(recursive: true);
+    final newFile = await File(buildDir + page.path).create(recursive: true);
     stdout.write("Creating ${page.path}...\n");
     await newFile.writeAsString(page.toHTML());
   }
-  final newStyle = await File("input.css").create(recursive: true);
+  final newStyle = await File("${buildDir}input.css").create(recursive: true);
   stdout.write("Creating stylesheet...\n");
   await newStyle.writeAsString("""@tailwind base;
 @tailwind components;
 @tailwind utilities;""");
-  final newConfig = await File("tailwind.config.js").create(recursive: true);
+  final newConfig = await File("${buildDir}tailwind.config.js").create(recursive: true);
   stdout.write("Creating TailwindCSS config file...\n");
   await newConfig.writeAsString("""/** @type {import('tailwindcss').Config} */
 
 const colors = require('tailwindcss/colors')
 
 module.exports = {
-  content: ["./index.html"],
+  content: ["./*.html"],
   theme: {
     extend: {},
   },
@@ -127,11 +128,11 @@ module.exports = {
   plugins: [require("@tailwindcss/typography")],
 }""");
   stdout.write("Installing TailwindCSS...\n");
-  await Process.run("npm", ["install", "-D", "tailwindcss"]);
+  await Process.run("npm", ["install", "-D", "tailwindcss"], workingDirectory: buildDir);
   stdout.write("Installing @tailwindcss/typography...\n");
-  await Process.run("npm", ["install", "-D", "@tailwindcss/typography"]);
+  await Process.run("npm", ["install", "-D", "@tailwindcss/typography"], workingDirectory: buildDir);
   stdout.write("Running npx tailwindcss init...\n");
-  await Process.run("npx", ["tailwindcss", "init"]);
+  await Process.run("npx", ["tailwindcss", "init"], workingDirectory: buildDir);
   stdout.write("Running npx tailwindcss -i input.css -o style/tailwind.css...\n");
-  await Process.run("npx", ["tailwindcss", "-i", "input.css", "-o", "style/tailwind.css"]);
+  await Process.run("npx", ["tailwindcss", "-i", "input.css", "-o", "style/tailwind.css"], workingDirectory: buildDir);
 }
