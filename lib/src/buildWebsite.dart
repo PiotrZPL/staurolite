@@ -1,14 +1,20 @@
 import 'htmlbasiccomponents/htmlbasiccomponents.dart';
+import 'website.dart';
 import 'dart:io';
 
-void buildWebsite(HtmlDoc website) async {
-  final newFile = await File("index.html").create(recursive: true);
-  await newFile.writeAsString(website.toHTML());
+void buildWebsite(Website website) async {
+  for (var page in website.listOfHtml) {
+    final newFile = await File(page.path).create(recursive: true);
+    stdout.write("Creating ${page.path}...\n");
+    await newFile.writeAsString(page.toHTML());
+  }
   final newStyle = await File("input.css").create(recursive: true);
+  stdout.write("Creating stylesheet...\n");
   await newStyle.writeAsString("""@tailwind base;
 @tailwind components;
 @tailwind utilities;""");
   final newConfig = await File("tailwind.config.js").create(recursive: true);
+  stdout.write("Creating TailwindCSS config file...\n");
   await newConfig.writeAsString("""/** @type {import('tailwindcss').Config} */
 
 const colors = require('tailwindcss/colors')
@@ -120,8 +126,12 @@ module.exports = {
   },
   plugins: [require("@tailwindcss/typography")],
 }""");
+  stdout.write("Installing TailwindCSS...\n");
   await Process.run("npm", ["install", "-D", "tailwindcss"]);
+  stdout.write("Installing @tailwindcss/typography...\n");
   await Process.run("npm", ["install", "-D", "@tailwindcss/typography"]);
+  stdout.write("Running npx tailwindcss init...\n");
   await Process.run("npx", ["tailwindcss", "init"]);
+  stdout.write("Running npx tailwindcss -i input.css -o style/tailwind.css...\n");
   await Process.run("npx", ["tailwindcss", "-i", "input.css", "-o", "style/tailwind.css"]);
 }
