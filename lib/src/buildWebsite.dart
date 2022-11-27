@@ -127,10 +127,22 @@ module.exports = {
   },
   plugins: [require("@tailwindcss/typography")],
 }""");
-  stdout.write("Installing TailwindCSS...\n");
-  await Process.run("npm", ["install", "-D", "tailwindcss"], workingDirectory: buildDir);
-  stdout.write("Installing @tailwindcss/typography...\n");
-  await Process.run("npm", ["install", "-D", "@tailwindcss/typography"], workingDirectory: buildDir);
+  stdout.write("Checking if TailwindCSS is installed... ");
+  if (!(await Directory("${buildDir}node_modules/tailwindcss").exists())) {
+    stdout.write("It is not\nInstalling TailwindCSS...\n");
+    await Process.run("npm", ["install", "-D", "tailwindcss"], workingDirectory: buildDir);
+  }
+  else {
+    stdout.write("It is\n");
+  }
+  stdout.write("Checking if @tailwindcss/typography is installed... ");
+  if (!(await Directory("${buildDir}node_modules/@tailwindcss/typography").exists())) {
+    stdout.write("It is not\nInstalling @tailwindcss/typography...\n");
+    await Process.run("npm", ["install", "-D", "@tailwindcss/typography"], workingDirectory: buildDir);
+  }
+  else {
+    stdout.write("It is\n");
+  }
   stdout.write("Running npx tailwindcss init...\n");
   await Process.run("npx", ["tailwindcss", "init"], workingDirectory: buildDir);
   stdout.write("Running npx tailwindcss -i input.css -o style/tailwind.css...\n");
