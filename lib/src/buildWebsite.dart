@@ -1,6 +1,7 @@
 import 'htmlbasiccomponents/htmlbasiccomponents.dart';
 import 'website.dart';
 import 'dart:io';
+import 'package:serve/serve.dart';
 
 void buildWebsite(Website website) async {
   String buildDir = "build/";
@@ -147,4 +148,9 @@ module.exports = {
   await Process.run("npx", ["tailwindcss", "init"], workingDirectory: buildDir);
   stdout.write("Running npx tailwindcss -i input.css -o style/tailwind.css...\n");
   await Process.run("npx", ["tailwindcss", "-i", "input.css", "-o", "style/tailwind.css"], workingDirectory: buildDir);
+
+  stdout.write("Serving website at localhost:1313...\n");
+  await serve(
+    Conf(["build"], ["/"], host: "localhost", port: 1313)
+  );
 }
