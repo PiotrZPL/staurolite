@@ -1,3 +1,5 @@
+import 'package:path/path.dart';
+
 import 'htmlbasiccomponents/htmlbasiccomponents.dart';
 import 'website.dart';
 import 'dart:io';
@@ -5,6 +7,26 @@ import 'package:serve/serve.dart';
 
 void buildWebsite(Website website) async {
   String buildDir = "build/";
+  stdout.write("Checking if $buildDir exists... ");
+  if (! await Directory(buildDir).exists()) {
+    stdout.write("It does not\nCreating $buildDir...\n");
+    Directory(buildDir).create();
+  }
+  else {
+    stdout.write("It does\n");
+    for (var entry in await Directory(buildDir).list().toList()) {
+      if (entry is File) {
+        stdout.write("Removing ${entry.path}...\n");
+        File(entry.path).delete(recursive: true);
+      }
+      if (entry is Directory) {
+        if (entry.path != "${buildDir}node_modules") {
+          stdout.write("Removing ${entry.path}...\n");
+          Directory(entry.path).delete(recursive: true);
+        }
+      }
+    }
+  }
   for (var page in website.listOfHtml) {
     final newFile = await File(buildDir + page.path).create(recursive: true);
     stdout.write("Creating ${page.path}...\n");
@@ -128,6 +150,22 @@ module.exports = {
   },
   plugins: [require("@tailwindcss/typography")],
 }""");
+  stdout.write("Copying files from the static directory\n");
+  if (await Directory("static").exists()) {
+    final staticDir = Directory("static");
+    for (var entry in await staticDir.list(recursive: true).toList()) {
+      var newPathHelp = entry.path.split("/")..removeAt(0);
+      String newPath = buildDir + newPathHelp.join("/");
+      if (entry is Directory) {
+        stdout.write("Creating $newPath...\n");
+        Directory(newPath).create(recursive: true);
+      }
+      if (entry is File) {
+        stdout.write("Creating $newPath...\n");
+        File(entry.path).copy(newPath);
+      }
+    }
+  }
   stdout.write("Checking if TailwindCSS is installed... ");
   if (!(await Directory("${buildDir}node_modules/tailwindcss").exists())) {
     stdout.write("It is not\nInstalling TailwindCSS...\n");
