@@ -156,11 +156,17 @@ module.exports = {
       String newPath = buildDir + newPathHelp.join("/");
       if (entry is Directory) {
         stdout.write("Creating $newPath...\n");
-        Directory(newPath).create(recursive: true);
+        await Directory(newPath).create(recursive: true);
       }
       if (entry is File) {
         stdout.write("Creating $newPath...\n");
-        File(entry.path).copy(newPath);
+        var newDirPathHelp = newPath.split("/");
+        newDirPathHelp.removeLast();
+        var newDirPath = newDirPathHelp.join("/");
+        if (! await Directory(newDirPath).exists()) {
+          Directory(newDirPath).create(recursive: true);
+        }
+        await File(entry.path).copy(newPath);
       }
     }
   }
