@@ -42,7 +42,7 @@ void buildWebsite(Website website) async {
 const colors = require('tailwindcss/colors')
 
 module.exports = {
-  content: ["./*.html"],
+  content: ["./**/*.html"],
   theme: {
     extend: {},
   },
