@@ -16,7 +16,7 @@ class HtmlDoc {
 
   String toHTML() {
     return """<!DOCTYPE html>
-<html${lang!=null ? " $lang " : ""}>
+<html${lang!=null ? " lang=\"$lang\" " : ""}>
 ${head.toHTML()}
 ${body.toHTML()}
 </html> """;
