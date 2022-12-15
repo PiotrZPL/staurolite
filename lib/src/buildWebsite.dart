@@ -8,19 +8,19 @@ void buildWebsite(Website website) async {
   stdout.write("Checking if $buildDir exists... ");
   if (! await Directory(buildDir).exists()) {
     stdout.write("It does not\nCreating $buildDir...\n");
-    Directory(buildDir).create();
+    await Directory(buildDir).create();
   }
   else {
     stdout.write("It does\n");
     for (var entry in await Directory(buildDir).list().toList()) {
       if (entry is File) {
         stdout.write("Removing ${entry.path}...\n");
-        File(entry.path).delete(recursive: true);
+        await File(entry.path).delete(recursive: true);
       }
       if (entry is Directory) {
         if (entry.path != "${buildDir}node_modules") {
           stdout.write("Removing ${entry.path}...\n");
-          Directory(entry.path).delete(recursive: true);
+          await Directory(entry.path).delete(recursive: true);
         }
       }
     }
