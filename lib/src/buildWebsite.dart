@@ -1,10 +1,10 @@
-import 'package:path/path.dart';
 import 'website.dart';
 import 'dart:io';
 import 'package:serve/serve.dart';
 
 void buildWebsite(Website website) async {
   String buildDir = "build/";
+  String outputDir = "${buildDir}output/";
   stdout.write("Checking if $buildDir exists... ");
   if (! await Directory(buildDir).exists()) {
     stdout.write("It does not\nCreating $buildDir...\n");
@@ -25,8 +25,9 @@ void buildWebsite(Website website) async {
       }
     }
   }
+  await Directory(outputDir).create(recursive: true);
   for (var page in website.listOfHtml) {
-    final newFile = await File(buildDir + page.path).create(recursive: true);
+    final newFile = await File(outputDir + page.path).create(recursive: true);
     stdout.write("Creating ${page.path}...\n");
     await newFile.writeAsString(page.toHTML());
   }
@@ -153,7 +154,7 @@ module.exports = {
     final staticDir = Directory("static");
     for (var entry in await staticDir.list(recursive: true).toList()) {
       var newPathHelp = entry.path.split("/")..removeAt(0);
-      String newPath = buildDir + newPathHelp.join("/");
+      String newPath = outputDir + newPathHelp.join("/");
       if (entry is Directory) {
         stdout.write("Creating $newPath...\n");
         await Directory(newPath).create(recursive: true);
@@ -188,11 +189,11 @@ module.exports = {
   }
   stdout.write("Running npx tailwindcss init...\n");
   await Process.run("npx", ["tailwindcss", "init"], workingDirectory: buildDir);
-  stdout.write("Running npx tailwindcss -i input.css -o style/tailwind.css...\n");
-  await Process.run("npx", ["tailwindcss", "-i", "input.css", "-o", "style/tailwind.css"], workingDirectory: buildDir);
+  stdout.write("Running npx tailwindcss -i input.css -o ${outputDir.replaceAll(buildDir, "")}style/tailwind.css...\n");
+  await Process.run("npx", ["tailwindcss", "-i", "input.css", "-o", "${outputDir.replaceAll(buildDir, "")}style/tailwind.css"], workingDirectory: buildDir);
 
   stdout.write("Serving website at localhost:1313...\n");
   await serve(
-    Conf(["build"], ["/"], host: "localhost", port: 1313)
+    Conf([outputDir], ["/"], host: "localhost", port: 1313)
   );
 }
