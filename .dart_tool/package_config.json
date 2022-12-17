@@ -134,6 +134,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "markdown",
+      "rootUri": "file:///home/piotr/.pub-cache/hosted/pub.dartlang.org/markdown-6.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "matcher",
       "rootUri": "file:///home/piotr/.pub-cache/hosted/pub.dartlang.org/matcher-0.12.13",
       "packageUri": "lib/",
@@ -320,7 +326,7 @@
       "languageVersion": "2.18"
     }
   ],
-  "generated": "2022-12-15T06:16:33.061914Z",
+  "generated": "2022-12-17T12:43:05.789562Z",
   "generator": "pub",
   "generatorVersion": "2.18.5"
 }
