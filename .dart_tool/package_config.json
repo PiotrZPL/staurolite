@@ -62,6 +62,12 @@
       "languageVersion": "2.14"
     },
     {
+      "name": "csslib",
+      "rootUri": "file:///home/piotr/.pub-cache/hosted/pub.dartlang.org/csslib-0.17.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "file",
       "rootUri": "file:///home/piotr/.pub-cache/hosted/pub.dartlang.org/file-6.1.4",
       "packageUri": "lib/",
@@ -78,6 +84,18 @@
       "rootUri": "file:///home/piotr/.pub-cache/hosted/pub.dartlang.org/glob-2.1.1",
       "packageUri": "lib/",
       "languageVersion": "2.15"
+    },
+    {
+      "name": "highlight",
+      "rootUri": "file:///home/piotr/.pub-cache/hosted/pub.dartlang.org/highlight-0.7.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "html",
+      "rootUri": "file:///home/piotr/.pub-cache/hosted/pub.dartlang.org/html-0.15.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
     },
     {
       "name": "http_multi_server",
@@ -326,7 +344,7 @@
       "languageVersion": "2.18"
     }
   ],
-  "generated": "2022-12-17T12:43:05.789562Z",
+  "generated": "2022-12-17T16:45:09.204697Z",
   "generator": "pub",
-  "generatorVersion": "2.18.5"
+  "generatorVersion": "2.18.6"
 }

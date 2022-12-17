@@ -47,8 +47,14 @@ module.exports = {
   theme: {
     extend: {},
   },
+  safelist: [{
+    pattern: /hljs+/,
+  }],
   plugins: [],darkMode: "class",
   theme: {
+    hljs: {
+      theme: 'night-owl',
+    },
     extend: {
       colors: {
         amber: colors.amber,
@@ -147,7 +153,7 @@ module.exports = {
       typography: ["dark"],
     },
   },
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [require("@tailwindcss/typography"), require('tailwind-highlightjs')],
 }""");
   stdout.write("Copying files from the static directory\n");
   if (await Directory("static").exists()) {

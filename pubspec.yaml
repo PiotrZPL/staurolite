@@ -17,3 +17,5 @@ dependencies:
   path: ^1.8.0
   serve: ^3.0.1
   markdown: ^6.0.1
+  highlight: ^0.7.0
+  html: ^0.15.1
