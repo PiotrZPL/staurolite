@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:serve/serve.dart';
 
 void buildWebsite(Website website) async {
-  String buildDir = "build/";
-  String outputDir = "${buildDir}output/";
+  String buildDir = "build";
+  String outputDir = "$buildDir/output";
   stdout.write("Checking if $buildDir exists... ");
   if (! await Directory(buildDir).exists()) {
     stdout.write("It does not\nCreating $buildDir...\n");
@@ -18,7 +18,7 @@ void buildWebsite(Website website) async {
         await File(entry.path).delete(recursive: true);
       }
       if (entry is Directory) {
-        if (entry.path != "${buildDir}node_modules") {
+        if (entry.path != "$buildDir/node_modules") {
           stdout.write("Removing ${entry.path}...\n");
           await Directory(entry.path).delete(recursive: true);
         }
@@ -34,14 +34,14 @@ void buildWebsite(Website website) async {
     await newFile.writeAsString(page.toHTML());
     indexjson += """{"categories":null,"contents":"${page.description ?? ""}","date":"${page.publishDate ?? DateTime.now()}","permalink":"${page.path}","tags":null,"title":"${page.head.title}"},""";
   }
-  indexjson = indexjson.substring(0, indexjson.length - 1) + "]";
-  await File("${outputDir}index.json").writeAsString(indexjson);
-  final newStyle = await File("${buildDir}input.css").create(recursive: true);
+  indexjson = "${indexjson.substring(0, indexjson.length - 1)}]";
+  await File("$outputDir/index.json").writeAsString(indexjson);
+  final newStyle = await File("$buildDir/input.css").create(recursive: true);
   stdout.write("Creating stylesheet...\n");
   await newStyle.writeAsString("""@tailwind base;
 @tailwind components;
 @tailwind utilities;""");
-  final newConfig = await File("${buildDir}tailwind.config.js").create(recursive: true);
+  final newConfig = await File("$buildDir/tailwind.config.js").create(recursive: true);
   stdout.write("Creating TailwindCSS config file...\n");
   await newConfig.writeAsString("""/** @type {import('tailwindcss').Config} */
 
@@ -165,7 +165,7 @@ module.exports = {
     final staticDir = Directory("static");
     for (var entry in await staticDir.list(recursive: true).toList()) {
       var newPathHelp = entry.path.split("/")..removeAt(0);
-      String newPath = outputDir + newPathHelp.join("/");
+      String newPath = "$outputDir/${newPathHelp.join("/")}";
       if (entry is Directory) {
         stdout.write("Creating $newPath...\n");
         await Directory(newPath).create(recursive: true);
@@ -183,7 +183,7 @@ module.exports = {
     }
   }
   stdout.write("Checking if TailwindCSS is installed... ");
-  if (!(await Directory("${buildDir}node_modules/tailwindcss").exists())) {
+  if (!(await Directory("$buildDir/node_modules/tailwindcss").exists())) {
     stdout.write("It is not\nInstalling TailwindCSS...\n");
     await Process.run("npm", ["install", "-D", "tailwindcss"], workingDirectory: buildDir);
   }
@@ -191,7 +191,7 @@ module.exports = {
     stdout.write("It is\n");
   }
   stdout.write("Checking if @tailwindcss/typography is installed... ");
-  if (!(await Directory("${buildDir}node_modules/@tailwindcss/typography").exists())) {
+  if (!(await Directory("$buildDir/node_modules/@tailwindcss/typography").exists())) {
     stdout.write("It is not\nInstalling @tailwindcss/typography...\n");
     await Process.run("npm", ["install", "-D", "@tailwindcss/typography"], workingDirectory: buildDir);
   }
@@ -200,8 +200,8 @@ module.exports = {
   }
   stdout.write("Running npx tailwindcss init...\n");
   await Process.run("npx", ["tailwindcss", "init"], workingDirectory: buildDir);
-  stdout.write("Running npx tailwindcss -i input.css -o ${outputDir.replaceAll(buildDir, "")}style/tailwind.css...\n");
-  await Process.run("npx", ["tailwindcss", "-i", "input.css", "-o", "${outputDir.replaceAll(buildDir, "")}style/tailwind.css"], workingDirectory: buildDir);
+  stdout.write("Running npx tailwindcss -i input.css -o ${outputDir.replaceAll("$buildDir/", "")}/style/tailwind.css...\n");
+  await Process.run("npx", ["tailwindcss", "-i", "input.css", "-o", "${outputDir.replaceAll("$buildDir/", "")}/style/tailwind.css"], workingDirectory: buildDir);
 
   stdout.write("Serving website at localhost:1313...\n");
   await serve(
