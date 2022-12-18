@@ -26,11 +26,16 @@ void buildWebsite(Website website) async {
     }
   }
   await Directory(outputDir).create(recursive: true);
+
+  String indexjson = "[";
   for (var page in website.listOfHtml) {
     final newFile = await File(outputDir + page.path).create(recursive: true);
     stdout.write("Creating ${page.path}...\n");
     await newFile.writeAsString(page.toHTML());
+    indexjson += """{"categories":null,"contents":"${page.description ?? ""}","date":"${page.publishDate ?? DateTime.now()}","permalink":"${page.path}","tags":null,"title":"${page.head.title}"},""";
   }
+  indexjson = indexjson.substring(0, indexjson.length - 1) + "]";
+  await File("${outputDir}index.json").writeAsString(indexjson);
   final newStyle = await File("${buildDir}input.css").create(recursive: true);
   stdout.write("Creating stylesheet...\n");
   await newStyle.writeAsString("""@tailwind base;
