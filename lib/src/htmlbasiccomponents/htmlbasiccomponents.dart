@@ -14,6 +14,7 @@ export 'htmlwidget.dart';
 export 'hyperlink.dart';
 export 'img.dart';
 export 'indicateText.dart';
+export 'input.dart';
 export 'link.dart';
 export 'listItem.dart';
 export 'main.dart';
