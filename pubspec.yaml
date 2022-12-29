@@ -1,6 +1,6 @@
 name: dbml
 description: A starting point for Dart libraries or applications.
-version: 1.0.8.1
+version: 1.0.9
 # homepage: https://www.example.com
 
 environment:
