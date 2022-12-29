@@ -41,7 +41,7 @@ void buildWebsite(Website website, [String customConfigPath = ""]) async {
   await newStyle.writeAsString("""@tailwind base;
 @tailwind components;
 @tailwind utilities;""");
-  if (customConfigPath != "") {
+  if (customConfigPath == "") {
     final newConfig = await File("$buildDir/tailwind.config.js").create(recursive: true);
     stdout.write("Creating TailwindCSS config file...\n");
     await newConfig.writeAsString("""/** @type {import('tailwindcss').Config} */
