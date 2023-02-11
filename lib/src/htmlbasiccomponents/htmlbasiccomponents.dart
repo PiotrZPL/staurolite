@@ -12,7 +12,7 @@ export 'heading.dart';
 export 'htmldoc.dart';
 export 'htmlwidget.dart';
 export 'hyperlink.dart';
-export 'img.dart';
+export 'image.dart';
 export 'indicateText.dart';
 export 'input.dart';
 export 'link.dart';
