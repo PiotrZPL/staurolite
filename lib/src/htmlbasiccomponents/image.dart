@@ -1,7 +1,7 @@
 import 'htmlwidget.dart';
 
-class Img extends HtmlWidget{
-  Img({
+class Image extends HtmlWidget{
+  Image({
     properties,
     style,
     id,
