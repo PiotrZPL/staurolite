@@ -2,21 +2,21 @@ import 'htmlwidget.dart';
 
 class ListItem extends HtmlWidget{
   ListItem({
-    widget_class,
+    properties,
     style,
     id,
     title,
     this.onClick,
     this.widgets
-  }) : super(widget_class: widget_class, style: style, id: id, title: title);
+  }) : super(properties: properties, style: style, id: id, title: title);
 
   final List<HtmlWidget?>? widgets;
   final String? onClick;
 
   String toHTML() {
     var output = "<li ";
-    if (widget_class != null) {
-      output += """class="$widget_class" """;
+    if (properties != null) {
+      output += """class="$properties" """;
     }
     if (style != null) {
       output += """style="$style" """;

@@ -2,7 +2,7 @@ import 'htmlwidget.dart';
 
 class Img extends HtmlWidget{
   Img({
-    widget_class,
+    properties,
     style,
     id,
     title,
@@ -19,7 +19,7 @@ class Img extends HtmlWidget{
     this.srcset,
     this.usemap,
     this.width
-  }) : super(widget_class: widget_class, style: style, id: id, title: title);
+  }) : super(properties: properties, style: style, id: id, title: title);
 
   final String? onClick;
   final String? alt;
@@ -37,8 +37,8 @@ class Img extends HtmlWidget{
 
   String toHTML() {
     var output = "<img ";
-    if (widget_class != null) {
-      output += """class="$widget_class" """;
+    if (properties != null) {
+      output += """class="$properties" """;
     }
     if (style != null) {
       output += """style="$style" """;

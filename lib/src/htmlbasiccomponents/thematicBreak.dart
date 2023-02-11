@@ -2,19 +2,19 @@ import 'htmlwidget.dart';
 
 class ThematicBreak extends HtmlWidget{
   ThematicBreak({
-    widget_class,
+    properties,
     style,
     id,
     title,
     this.onClick,
-  }) : super(widget_class: widget_class, style: style, id: id, title: title);
+  }) : super(properties: properties, style: style, id: id, title: title);
 
   final String? onClick;
 
   String toHTML() {
     var output = "<hr ";
-    if (widget_class != null) {
-      output += """class="$widget_class" """;
+    if (properties != null) {
+      output += """class="$properties" """;
     }
     if (style != null) {
       output += """style="$style" """;

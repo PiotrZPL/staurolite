@@ -1,6 +1,6 @@
 class HtmlWidget {
   HtmlWidget({
-    this.widget_class,
+    this.properties,
     this.style,
     this.id,
     this.title,
@@ -23,7 +23,7 @@ class HtmlWidget {
     this.onunload
   });
 
-  final String? widget_class;
+  final String? properties;
   final String? style;
   final String? id;
   final String? title;

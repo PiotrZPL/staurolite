@@ -2,20 +2,20 @@ import 'htmlwidget.dart';
 
 class Paragraph extends HtmlWidget {
   Paragraph({
-    widget_class,
+    properties,
     style,
     id,
     title,
     this.text,
-  }) : super(widget_class: widget_class, style: style, id: id, title: title);
+  }) : super(properties: properties, style: style, id: id, title: title);
 
   final String? text;
 
   @override
   String toHTML() {
     var output = "<p ";
-    if (widget_class != null) {
-      output += """class="$widget_class" """;
+    if (properties != null) {
+      output += """class="$properties" """;
     }
     if (style != null) {
       output += """style="$style" """;

@@ -2,20 +2,20 @@ import 'htmlwidget.dart';
 
 class Span extends HtmlWidget{
   Span({
-    widget_class,
+    properties,
     style,
     id,
     this.widgets,
     this.text
-  }) : super(widget_class: widget_class, style: style, id: id);
+  }) : super(properties: properties, style: style, id: id);
 
   final List<HtmlWidget?>? widgets;
   final String? text;
 
   String toHTML() {
     var output = "<span ";
-    if (widget_class != null) {
-      output += """class="$widget_class" """;
+    if (properties != null) {
+      output += """class="$properties" """;
     }
     if (style != null) {
       output += """style="$style" """;

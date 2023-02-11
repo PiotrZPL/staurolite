@@ -6,10 +6,10 @@ class Hyperlink extends HtmlWidget {
     this.href,
     this.onClick,
     this.widgets,
-    widget_class,
+    properties,
     style,
     id,
-  }) : super(widget_class: widget_class, style: style, id: id);
+  }) : super(properties: properties, style: style, id: id);
 
   final String? text;
   final String? href;
@@ -25,8 +25,8 @@ class Hyperlink extends HtmlWidget {
     if (onClick != null) {
       output += """onClick="$onClick" """;
     }
-    if (widget_class != null) {
-      output += """class="$widget_class" """;
+    if (properties != null) {
+      output += """class="$properties" """;
     }
     if (style != null) {
       output += """style="$style" """;

@@ -3,7 +3,7 @@ import 'htmlwidget.dart';
 class Body extends HtmlWidget {
   Body({
     this.widgets,
-    widget_class,
+    properties,
     style,
     id,
     title,
@@ -25,7 +25,7 @@ class Body extends HtmlWidget {
     onstorage,
     onunload
   }) : super(
-    widget_class: widget_class,
+    properties: properties,
     style: style,
     id: id,
     title: title,
@@ -53,8 +53,8 @@ class Body extends HtmlWidget {
   @override
   String toHTML() {
     String output = "<body ";
-    if (widget_class != null) {
-      output += """class="$widget_class" """;
+    if (properties != null) {
+      output += """class="$properties" """;
     }
 
     // Window event attributes

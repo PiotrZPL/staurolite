@@ -2,7 +2,7 @@ import 'htmlwidget.dart';
 
 class Script extends HtmlWidget {
   Script({
-    widget_class,
+    properties,
     style,
     id,
     title,
@@ -15,7 +15,7 @@ class Script extends HtmlWidget {
     this.referrerpolicy,
     this.src,
     this.type
-  }) : super(widget_class: widget_class, style: style, id: id, title: title);
+  }) : super(properties: properties, style: style, id: id, title: title);
 
   final String? script;
   final String? async;
@@ -30,8 +30,8 @@ class Script extends HtmlWidget {
   @override
   String toHTML() {
     var output = "<script ";
-    if (widget_class != null) {
-      output += """class="$widget_class" """;
+    if (properties != null) {
+      output += """class="$properties" """;
     }
     if (style != null) {
       output += """style="$style" """;

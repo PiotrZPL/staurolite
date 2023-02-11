@@ -2,7 +2,7 @@ import "htmlwidget.dart";
 
 class Input extends HtmlWidget {
   Input({
-    widget_class,
+    properties,
     style,
     id,
     title,
@@ -36,7 +36,7 @@ class Input extends HtmlWidget {
     this.type,
     this.value,
     this.width,
-  }) : super(widget_class: widget_class, style: style, id: id, title: title);
+  }) : super(properties: properties, style: style, id: id, title: title);
 
   final List<HtmlWidget?>? widgets;
   final String? onClick;
@@ -72,8 +72,8 @@ class Input extends HtmlWidget {
 
   String toHTML() {
     var output = "<input ";
-    if (widget_class != null) {
-      output += """class="$widget_class" """;
+    if (properties != null) {
+      output += """class="$properties" """;
     }
     if (style != null) {
       output += """style="$style" """;
