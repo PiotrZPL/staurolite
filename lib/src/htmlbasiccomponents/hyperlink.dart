@@ -5,7 +5,7 @@ class Hyperlink extends HtmlWidget {
     this.text,
     this.href,
     this.onClick,
-    this.widgets,
+    this.children,
     properties,
     style,
     id,
@@ -14,7 +14,7 @@ class Hyperlink extends HtmlWidget {
   final String? text;
   final String? href;
   final String? onClick;
-  final List<HtmlWidget?>? widgets;
+  final List<HtmlWidget?>? children;
 
   @override
   String toHTML() {
@@ -35,8 +35,8 @@ class Hyperlink extends HtmlWidget {
       output += """id="$id" """;
     }
     output = output.trim() + ">";
-    if (widgets != null) {
-      widgets!.forEach((element) {
+    if (children != null) {
+      children!.forEach((element) {
         if (element != null) {
           output += "\n" + element.toHTML();
         }
