@@ -1,16 +1,16 @@
 import 'htmlwidget.dart';
 
 class Head {
-  const Head({this.widgets, this.title});
+  const Head({this.children, this.title});
 
-  final List<HtmlWidget?>? widgets;
+  final List<HtmlWidget?>? children;
   final String? title;
 
   String toHTML() {
     var output = "<head>";
     output += "\n<title>$title</title>";
-    if (widgets != null) {
-      widgets!.forEach((element) {
+    if (children != null) {
+      children!.forEach((element) {
         if (element != null) {
           output += "\n" + element.toHTML();
         }

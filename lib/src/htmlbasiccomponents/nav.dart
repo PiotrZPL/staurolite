@@ -5,10 +5,10 @@ class Nav extends HtmlWidget{
     properties,
     style,
     id,
-    this.widgets
+    this.children
   }) : super(properties: properties, style: style, id: id);
 
-  final List<HtmlWidget?>? widgets;
+  final List<HtmlWidget?>? children;
 
   String toHTML() {
     var output = "<nav ";
@@ -22,8 +22,8 @@ class Nav extends HtmlWidget{
       output += """id="$id" """;
     }
     output = output.trim() + ">";
-    if (widgets != null) {
-      widgets!.forEach((element) {
+    if (children != null) {
+      children!.forEach((element) {
         if (element != null) {
           output += "\n" + element.toHTML();
         }

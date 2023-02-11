@@ -4,7 +4,7 @@ class Heading extends HtmlWidget {
   Heading({
     this.text,
     this.level = 1,
-    this.widgets,
+    this.children,
     properties,
     style,
     id,
@@ -12,7 +12,7 @@ class Heading extends HtmlWidget {
 
   final String? text;
   int level;
-  final List<HtmlWidget?>? widgets;
+  final List<HtmlWidget?>? children;
 
   @override
   String toHTML() {
@@ -27,8 +27,8 @@ class Heading extends HtmlWidget {
       output += """id="$id" """;
     }
     output = output.trim() + ">";
-    if (widgets != null) {
-      widgets!.forEach((element) {
+    if (children != null) {
+      children!.forEach((element) {
         if (element != null) {
           output += "\n" + element.toHTML();
         }

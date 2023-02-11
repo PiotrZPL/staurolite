@@ -5,10 +5,10 @@ class Header extends HtmlWidget{
     properties,
     style,
     id,
-    this.widgets
+    this.children
   }) : super(properties: properties, style: style, id: id);
 
-  final List<HtmlWidget?>? widgets;
+  final List<HtmlWidget?>? children;
 
   String toHTML() {
     var output = "<header ";
@@ -16,8 +16,8 @@ class Header extends HtmlWidget{
       output += """class="$properties" """;
     }
     output = output.trim() + ">";
-    if (widgets != null) {
-      widgets!.forEach((element) {
+    if (children != null) {
+      children!.forEach((element) {
         if (element != null) {
           output += "\n" + element.toHTML();
         }

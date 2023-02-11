@@ -8,12 +8,12 @@ class Button extends HtmlWidget{
     style,
     id,
     title,
-    this.widgets,
+    this.children,
     this.onClick,
     this.text
   }) : super(properties: properties, style: style, id: id, title: title);
 
-  final List<HtmlWidget?>? widgets;
+  final List<HtmlWidget?>? children;
   final String? onClick;
   final String? text;
 
@@ -35,8 +35,8 @@ class Button extends HtmlWidget{
       output += """onClick="$onClick" """;
     }
     output = output.trim() + ">";
-    if (widgets != null) {
-      widgets!.forEach((element) {
+    if (children != null) {
+      children!.forEach((element) {
         if (element != null) {
           output += "\n" + element.toHTML();
         }

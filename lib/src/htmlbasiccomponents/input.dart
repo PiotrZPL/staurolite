@@ -6,7 +6,7 @@ class Input extends HtmlWidget {
     style,
     id,
     title,
-    this.widgets,
+    this.children,
     this.onClick,
     this.text,
     this.accept,
@@ -38,7 +38,7 @@ class Input extends HtmlWidget {
     this.width,
   }) : super(properties: properties, style: style, id: id, title: title);
 
-  final List<HtmlWidget?>? widgets;
+  final List<HtmlWidget?>? children;
   final String? onClick;
   final String? text;
 
@@ -94,8 +94,8 @@ class Input extends HtmlWidget {
       output += """placeholder="$placeholder" """;
     }
     output = output.trim() + ">";
-    if (widgets != null) {
-      widgets!.forEach((element) {
+    if (children != null) {
+      children!.forEach((element) {
         if (element != null) {
           output += "\n" + element.toHTML();
         }

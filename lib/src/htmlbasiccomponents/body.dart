@@ -2,7 +2,7 @@ import 'htmlwidget.dart';
 
 class Body extends HtmlWidget {
   Body({
-    this.widgets,
+    this.children,
     properties,
     style,
     id,
@@ -48,7 +48,7 @@ class Body extends HtmlWidget {
     onunload: onunload
   );
 
-  final List<HtmlWidget?>? widgets;
+  final List<HtmlWidget?>? children;
 
   @override
   String toHTML() {
@@ -104,8 +104,8 @@ class Body extends HtmlWidget {
       output += """onunload="$onunload" """;
     }
     output = output.trim() + ">";
-    if (widgets != null) {
-      widgets!.forEach((element) {
+    if (children != null) {
+      children!.forEach((element) {
         if (element != null) {
           output += "\n" + element.toHTML();
         }
