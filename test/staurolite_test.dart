@@ -1,4 +1,4 @@
-import 'package:dbml/dbml.dart';
+import 'package:staurolite/staurolite.dart';
 import 'package:test/test.dart';
 
 void main() {

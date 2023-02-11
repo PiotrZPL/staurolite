@@ -1,5 +1,5 @@
-name: dbml
-description: A starting point for Dart libraries or applications.
+name: staurolite
+description: a simple backend for static site generators using dart 
 version: 1.0.10
 # homepage: https://www.example.com
 

@@ -1,2 +1,2 @@
-# dbml
-Dart Based Markup Language - a simple static site generator using dart
+# staurolite
+Staurolite - a simple backend for static site generators using dart 

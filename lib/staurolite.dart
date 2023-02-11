@@ -1,4 +1,4 @@
-library dbml;
+library staurolite;
 
 export 'src/htmlbasiccomponents/htmlbasiccomponents.dart';
 export 'src/partials/partials.dart';
