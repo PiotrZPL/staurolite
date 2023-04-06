@@ -8,15 +8,23 @@ class Button extends HtmlWidget{
     style,
     id,
     title,
+    ariaLabel,
     this.children,
     this.onClick,
     this.text
-  }) : super(properties: properties, style: style, id: id, title: title);
+  }) : super(
+    properties: properties,
+    style: style,
+    id: id,
+    title: title,
+    ariaLabel: ariaLabel
+  );
 
   final List<HtmlWidget?>? children;
   final String? onClick;
   final String? text;
 
+  @override
   String toHTML() {
     var output = "<button ";
     if (properties != null) {
@@ -34,7 +42,10 @@ class Button extends HtmlWidget{
     if (onClick != null) {
       output += """onClick="$onClick" """;
     }
-    output = output.trim() + ">";
+    if (ariaLabel != null) {
+      output += """aria-label="$ariaLabel" """;
+    }
+    output = "${output.trim()}>";
     if (children != null) {
       children!.forEach((element) {
         if (element != null) {

@@ -4,6 +4,8 @@ class HtmlWidget {
     this.style,
     this.id,
     this.title,
+    
+    this.ariaLabel,
 
     // Window event attributes
     this.onafterprint,
@@ -27,6 +29,8 @@ class HtmlWidget {
   final String? style;
   final String? id;
   final String? title;
+
+  final String? ariaLabel;
 
   // Window event attributes
   final String? onafterprint;
