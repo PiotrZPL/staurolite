@@ -35,6 +35,7 @@ class Image extends HtmlWidget{
   final String? usemap;
   final String? width;
 
+  @override
   String toHTML() {
     var output = "<img ";
     if (properties != null) {
@@ -88,7 +89,7 @@ class Image extends HtmlWidget{
     if (width != null) {
       output += """width="$width" """;
     }
-    output = output.trim() + ">";
-    return output + "\n</img>";
+    output = "${output.trim()}>";
+    return output;
   }
 }
