@@ -9,7 +9,7 @@ class HtmlDoc {
     required this.path,
     this.description,
     this.publishDate,
-    required this.properties
+    this.properties
   });
 
   final Head head;
