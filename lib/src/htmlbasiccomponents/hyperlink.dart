@@ -9,7 +9,13 @@ class Hyperlink extends HtmlWidget {
     properties,
     style,
     id,
-  }) : super(properties: properties, style: style, id: id);
+    ariaLabel,
+  }) : super(
+    properties: properties,
+    style: style,
+    id: id,
+    ariaLabel: ariaLabel
+  );
 
   final String? text;
   final String? href;
@@ -34,13 +40,16 @@ class Hyperlink extends HtmlWidget {
     if (id != null) {
       output += """id="$id" """;
     }
-    output = output.trim() + ">";
+    if (ariaLabel != null) {
+      output += """aria-label="$ariaLabel" """;
+    }
+    output = "${output.trim()}>";
     if (children != null) {
-      children!.forEach((element) {
+      for (HtmlWidget? element in children!) {
         if (element != null) {
-          output += "\n" + element.toHTML();
+          output += "\n${element.toHTML()}";
         }
-      });
+      }
     }
     if (text != null) {
       output += text!;
