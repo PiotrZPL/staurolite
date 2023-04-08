@@ -9,6 +9,7 @@ class HtmlDoc {
     required this.path,
     this.description,
     this.publishDate,
+    required this.properties
   });
 
   final Head head;
@@ -17,10 +18,11 @@ class HtmlDoc {
   final String path;
   final String? description;
   final String? publishDate;
+  final String? properties;
 
   String toHTML() {
     return """<!DOCTYPE html>
-<html${lang!=null ? " lang=\"$lang\" " : ""}>
+<html${properties != null ? " class=\"$properties\"" : ""}${lang != null ? " lang=\"$lang\" " : ""}>
 ${head.toHTML()}
 ${body.toHTML()}
 </html> """;
