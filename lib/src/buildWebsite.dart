@@ -1,8 +1,15 @@
 import 'website.dart';
+import 'tools/shorten_path.dart';
 import 'dart:io';
 import 'package:serve/serve.dart';
 
-void buildWebsite(Website website, [String customConfigPath = ""]) async {
+void buildWebsite(
+  Website website,
+  [
+    String customConfigPath = "",
+    bool buildIndexJSON = false,
+    bool shortenIndexJSONPaths = false
+  ]) async {
   String buildDir = "build";
   String outputDir = "$buildDir/output";
   stdout.write("Checking if $buildDir exists... ");
@@ -32,10 +39,14 @@ void buildWebsite(Website website, [String customConfigPath = ""]) async {
     final newFile = await File(outputDir + page.path).create(recursive: true);
     stdout.write("Creating ${page.path}...\n");
     await newFile.writeAsString(page.toHTML());
-    indexjson += """{"categories":null,"contents":"${page.description ?? ""}","date":"${page.publishDate ?? DateTime.now()}","permalink":"${page.path}","tags":null,"title":"${page.head.title}"},""";
+    if (buildIndexJSON) {
+      indexjson += """{"categories":null,"contents":"${page.description ?? ""}","date":"${page.publishDate ?? DateTime.now()}","permalink":"${shortenIndexJSONPaths ? shortenStandardPath(page.path) : page.path}","tags":null,"title":"${page.head.title}"},""";
+    }
   }
-  indexjson = "${indexjson.substring(0, indexjson.length - 1)}]";
-  await File("$outputDir/index.json").writeAsString(indexjson);
+  if (buildIndexJSON) {
+    indexjson = "${indexjson.substring(0, indexjson.length - 1)}]";
+    await File("$outputDir/index.json").writeAsString(indexjson);
+  }
   final newStyle = await File("$buildDir/input.css").create(recursive: true);
   stdout.write("Creating stylesheet...\n");
   await newStyle.writeAsString("""@tailwind base;
