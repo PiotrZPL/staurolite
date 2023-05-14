@@ -5,11 +5,11 @@ import 'package:serve/serve.dart';
 
 void buildWebsite(
   Website website,
-  [
+  {
     String customConfigPath = "",
     bool buildIndexJSON = false,
     bool shortenIndexJSONPaths = false
-  ]) async {
+  }) async {
   String buildDir = "build";
   String outputDir = "$buildDir/output";
   stdout.write("Checking if $buildDir exists... ");
