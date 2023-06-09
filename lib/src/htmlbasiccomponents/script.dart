@@ -18,9 +18,9 @@ class Script extends HtmlWidget {
   }) : super(properties: properties, style: style, id: id, title: title);
 
   final String? script;
-  final String? async;
+  final bool? async;
   final String? crossorigin;
-  final String? defer;
+  final bool? defer;
   final String? integrity;
   final String? nomodule;
   final String? referrerpolicy;
@@ -42,14 +42,14 @@ class Script extends HtmlWidget {
     if (title != null) {
       output += """title="$title" """;
     }
-    if (async != null) {
-      output += """async="$async" """;
+    if (async != null && async == true) {
+      output += """async """;
     }
     if (crossorigin != null) {
       output += """crossorigin="$crossorigin" """;
     }
-    if (defer != null) {
-      output += """defer="$defer" """;
+    if (defer != null && defer == true) {
+      output += """defer """;
     }
     if (integrity != null) {
       output += """integrity="$integrity" """;
