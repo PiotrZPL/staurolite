@@ -4,6 +4,7 @@ export 'article.dart';
 export 'body.dart';
 export 'boldText.dart';
 export 'button.dart';
+export 'custom_component.dart';
 export 'div.dart';
 export 'footer.dart';
 export 'head.dart';
