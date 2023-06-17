@@ -8,7 +8,8 @@ void buildWebsite(
   {
     String customConfigPath = "",
     bool buildIndexJSON = false,
-    bool shortenIndexJSONPaths = false
+    bool shortenIndexJSONPaths = false,
+    bool buildSiteMap = false
   }) async {
   String buildDir = "build";
   String outputDir = "$buildDir/output";
@@ -35,6 +36,9 @@ void buildWebsite(
   await Directory(outputDir).create(recursive: true);
 
   String indexjson = "[";
+  String sitemap = """<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+""";
   for (var page in website.listOfHtml) {
     final newFile = await File(outputDir + page.path).create(recursive: true);
     stdout.write("Creating ${page.path}...\n");
@@ -42,10 +46,21 @@ void buildWebsite(
     if (buildIndexJSON) {
       indexjson += """{"categories":null,"contents":"${page.description ?? ""}","date":"${page.publishDate ?? DateTime.now()}","permalink":"${shortenIndexJSONPaths ? shortenStandardPath(page.path) : page.path}","tags":null,"title":"${page.head.title}"},""";
     }
+    if (buildSiteMap) {
+      sitemap += """<url>
+<loc>${website.baseUrl}${shortenIndexJSONPaths ? shortenStandardPath(page.path) : page.path}</loc>
+</url>
+""";
+    }
   }
   if (buildIndexJSON) {
     indexjson = "${indexjson.substring(0, indexjson.length - 1)}]";
     await File("$outputDir/index.json").writeAsString(indexjson);
+  }
+
+  if (buildSiteMap) {
+    sitemap += "</urlset> ";
+    await File("$outputDir/sitemap.xml").writeAsString(sitemap);
   }
   final newStyle = await File("$buildDir/input.css").create(recursive: true);
   stdout.write("Creating stylesheet...\n");
