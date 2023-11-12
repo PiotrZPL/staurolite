@@ -15,7 +15,7 @@ class MarkdownElement extends HtmlWidget {
 
   @override
   String toHTML() {
-    var toparse = markdownToHtml(markdown);
+    var toparse = markdownToHtml(markdown, extensionSet: ExtensionSet.gitHubWeb);
     var interpretation = html_parser.parse(toparse);
     var codeinstances = interpretation.querySelectorAll("code");
     for (var iii in codeinstances) {
