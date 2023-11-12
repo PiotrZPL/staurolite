@@ -13,6 +13,7 @@ class Footer extends HtmlWidget{
   final List<HtmlWidget?>? children;
   final String? onClick;
 
+  @override
   String toHTML() {
     var output = "<footer ";
     if (properties != null) {
@@ -30,14 +31,14 @@ class Footer extends HtmlWidget{
     if (onClick != null) {
       output += """onClick="$onClick" """;
     }
-    output = output.trim() + ">";
+    output = "${output.trim()}>";
     if (children != null) {
-      children!.forEach((element) {
+      for (var element in children!) {
         if (element != null) {
-          output += "\n" + element.toHTML();
+          output += "\n${element.toHTML()}";
         }
-      });
+      }
     }
-    return output + "\n</footer>";
+    return "$output\n</footer>";
   }
 }

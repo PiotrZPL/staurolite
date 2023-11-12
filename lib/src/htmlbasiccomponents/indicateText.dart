@@ -11,6 +11,7 @@ class IndicateText extends HtmlWidget{
 
   final String? onClick;
 
+  @override
   String toHTML() {
     var output = "<i ";
     if (properties != null) {
@@ -28,7 +29,7 @@ class IndicateText extends HtmlWidget{
     if (onClick != null) {
       output += """onClick="$onClick" """;
     }
-    output = output.trim() + ">";
-    return output + "</i>";
+    output = "${output.trim()}>";
+    return "$output</i>";
   }
 }

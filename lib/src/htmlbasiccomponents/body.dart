@@ -103,14 +103,14 @@ class Body extends HtmlWidget {
     if (onunload != null) {
       output += """onunload="$onunload" """;
     }
-    output = output.trim() + ">";
+    output = "${output.trim()}>";
     if (children != null) {
-      children!.forEach((element) {
+      for (var element in children!) {
         if (element != null) {
-          output += "\n" + element.toHTML();
+          output += "\n${element.toHTML()}";
         }
-      });
+      }
     }
-    return output + "\n</body>";
+    return "$output\n</body>";
   }
 }

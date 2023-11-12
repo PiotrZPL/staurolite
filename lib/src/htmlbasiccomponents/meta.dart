@@ -28,6 +28,6 @@ class Meta extends HtmlWidget {
     if (content != null) {
       output += """content="$content" """;
     }
-    return output.trim() + ">";
+    return "${output.trim()}>";
   }
 }

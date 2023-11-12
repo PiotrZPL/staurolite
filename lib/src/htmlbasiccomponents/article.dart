@@ -17,6 +17,7 @@ class Article extends HtmlWidget{
   final String? onClick;
   final String? text;
 
+  @override
   String toHTML() {
     var output = "<article ";
     if (properties != null) {
@@ -34,17 +35,17 @@ class Article extends HtmlWidget{
     if (onClick != null) {
       output += """onClick="$onClick" """;
     }
-    output = output.trim() + ">";
+    output = "${output.trim()}>";
     if (children != null) {
-      children!.forEach((element) {
+      for (var element in children!) {
         if (element != null) {
-          output += "\n" + element.toHTML();
+          output += "\n${element.toHTML()}";
         }
-      });
+      }
     }
     if (text != null) {
       output = output.trim() + text!;
     }
-    return output + "</article>";
+    return "$output</article>";
   }
 }

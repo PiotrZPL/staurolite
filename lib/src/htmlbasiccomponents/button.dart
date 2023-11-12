@@ -47,15 +47,15 @@ class Button extends HtmlWidget{
     }
     output = "${output.trim()}>";
     if (children != null) {
-      children!.forEach((element) {
+      for (var element in children!) {
         if (element != null) {
-          output += "\n" + element.toHTML();
+          output += "\n${element.toHTML()}";
         }
-      });
+      }
     }
     if (text != null) {
       output = output.trim() + text!;
     }
-    return output + "</button>";
+    return "$output</button>";
   }
 }

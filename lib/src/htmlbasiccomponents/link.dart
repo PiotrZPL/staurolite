@@ -20,6 +20,7 @@ class Link extends HtmlWidget {
   final String? referrerpolicy;
   final String? rel;
   final String? sizes;
+  @override
   final String? title;
   final String? type;
 
@@ -53,6 +54,6 @@ class Link extends HtmlWidget {
     if (type != null) {
       output += """type="$type" """;
     }
-    return output.trim() + ">";
+    return "${output.trim()}>";
   }
 }

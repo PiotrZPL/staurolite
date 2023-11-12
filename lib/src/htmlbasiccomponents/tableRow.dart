@@ -13,6 +13,7 @@ class TableRow extends HtmlWidget{
   final List<HtmlWidget?>? children;
   final String? onClick;
 
+  @override
   String toHTML() {
     var output = "<tr ";
     if (properties != null) {
@@ -30,14 +31,14 @@ class TableRow extends HtmlWidget{
     if (onClick != null) {
       output += """onClick="$onClick" """;
     }
-    output = output.trim() + ">";
+    output = "${output.trim()}>";
     if (children != null) {
-      children!.forEach((element) {
+      for (var element in children!) {
         if (element != null) {
-          output += "\n" + element.toHTML();
+          output += "\n${element.toHTML()}";
         }
-      });
+      }
     }
-    return output + "\n</tr>";
+    return "$output\n</tr>";
   }
 }

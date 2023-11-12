@@ -12,6 +12,7 @@ class Span extends HtmlWidget{
   final List<HtmlWidget?>? children;
   final String? text;
 
+  @override
   String toHTML() {
     var output = "<span ";
     if (properties != null) {
@@ -23,14 +24,14 @@ class Span extends HtmlWidget{
     if (id != null) {
       output += """id="$id" """;
     }
-    output = output.trim() + ">";
+    output = "${output.trim()}>";
     if (children != null) {
-      children!.forEach((element) {
+      for (var element in children!) {
         if (element != null) {
-          output += "\n" + element.toHTML();
+          output += "\n${element.toHTML()}";
         }
-      });
+      }
     }
-    return output + "$text</span>";
+    return "$output$text</span>";
   }
 }

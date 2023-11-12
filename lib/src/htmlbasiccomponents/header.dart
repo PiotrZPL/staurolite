@@ -10,19 +10,20 @@ class Header extends HtmlWidget{
 
   final List<HtmlWidget?>? children;
 
+  @override
   String toHTML() {
     var output = "<header ";
     if (properties != null) {
       output += """class="$properties" """;
     }
-    output = output.trim() + ">";
+    output = "${output.trim()}>";
     if (children != null) {
-      children!.forEach((element) {
+      for (var element in children!) {
         if (element != null) {
-          output += "\n" + element.toHTML();
+          output += "\n${element.toHTML()}";
         }
-      });
+      }
     }
-    return output + "\n</header>";
+    return "$output\n</header>";
   }
 }

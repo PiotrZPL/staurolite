@@ -11,6 +11,7 @@ class ThematicBreak extends HtmlWidget{
 
   final String? onClick;
 
+  @override
   String toHTML() {
     var output = "<hr ";
     if (properties != null) {
@@ -28,7 +29,7 @@ class ThematicBreak extends HtmlWidget{
     if (onClick != null) {
       output += """onClick="$onClick" """;
     }
-    output = output.trim() + ">";
-    return output + "\n</hr>";
+    output = "${output.trim()}>";
+    return "$output\n</hr>";
   }
 }

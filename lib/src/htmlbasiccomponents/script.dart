@@ -66,7 +66,7 @@ class Script extends HtmlWidget {
     if (type != null) {
       output += """type="$type" """;
     }
-    output = output.trim() + ">";
+    output = "${output.trim()}>";
     if (script != null) {
       output += script!;
     }

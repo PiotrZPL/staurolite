@@ -26,13 +26,13 @@ class Heading extends HtmlWidget {
     if (id != null) {
       output += """id="$id" """;
     }
-    output = output.trim() + ">";
+    output = "${output.trim()}>";
     if (children != null) {
-      children!.forEach((element) {
+      for (var element in children!) {
         if (element != null) {
-          output += "\n" + element.toHTML();
+          output += "\n${element.toHTML()}";
         }
-      });
+      }
     }
     if (text != null) {
       output = output.trim() + text!.replaceAll("\n", "<br>");

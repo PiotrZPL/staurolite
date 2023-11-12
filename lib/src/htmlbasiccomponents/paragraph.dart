@@ -26,7 +26,7 @@ class Paragraph extends HtmlWidget {
     if (title != null) {
       output += """title="$title" """;
     }
-    output = output.trim() + ">";
+    output = "${output.trim()}>";
     if (text != null) {
       output += text!;
     }

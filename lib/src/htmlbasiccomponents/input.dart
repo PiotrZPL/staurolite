@@ -70,6 +70,7 @@ class Input extends HtmlWidget {
   final String? value;
   final String? width;
 
+  @override
   String toHTML() {
     var output = "<input ";
     if (properties != null) {
@@ -93,17 +94,17 @@ class Input extends HtmlWidget {
     if (placeholder != null) {
       output += """placeholder="$placeholder" """;
     }
-    output = output.trim() + ">";
+    output = "${output.trim()}>";
     if (children != null) {
-      children!.forEach((element) {
+      for (var element in children!) {
         if (element != null) {
-          output += "\n" + element.toHTML();
+          output += "\n${element.toHTML()}";
         }
-      });
+      }
     }
     if (text != null) {
       output = output.trim() + text!;
     }
-    return output + "</input>";
+    return "$output</input>";
   }
 }
