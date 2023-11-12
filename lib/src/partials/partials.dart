@@ -1,4 +1,4 @@
 library partials;
 
-export 'googleAnalytics.dart';
-export 'markdownElement.dart';
+export 'google_analytics.dart';
+export 'markdown_element.dart';

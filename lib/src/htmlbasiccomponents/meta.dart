@@ -4,12 +4,14 @@ class Meta extends HtmlWidget {
   Meta({
     this.charset,
     this.content,
+    // ignore: non_constant_identifier_names
     this.http_equiv,
     this.name
   });
 
   final String? charset;
   final String? content;
+  // ignore: non_constant_identifier_names
   final String? http_equiv;
   final String? name;
 

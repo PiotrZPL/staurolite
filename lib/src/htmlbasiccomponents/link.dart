@@ -9,7 +9,6 @@ class Link extends HtmlWidget {
     this. referrerpolicy,
     this.rel,
     this.sizes,
-    this.title,
     this.type
     });
 
@@ -20,8 +19,6 @@ class Link extends HtmlWidget {
   final String? referrerpolicy;
   final String? rel;
   final String? sizes;
-  @override
-  final String? title;
   final String? type;
 
   @override
