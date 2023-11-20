@@ -1,6 +1,6 @@
 name: staurolite
 description: a simple backend for static site generators using dart 
-version: 1.3.1
+version: 1.3.2
 # homepage: https://www.example.com
 
 environment:
