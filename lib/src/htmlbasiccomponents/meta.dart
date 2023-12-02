@@ -6,7 +6,8 @@ class Meta extends HtmlWidget {
     this.content,
     // ignore: non_constant_identifier_names
     this.http_equiv,
-    this.name
+    this.name,
+    this.property,
   });
 
   final String? charset;
@@ -14,6 +15,7 @@ class Meta extends HtmlWidget {
   // ignore: non_constant_identifier_names
   final String? http_equiv;
   final String? name;
+  final String? property;
 
   @override
   String toHTML() {
@@ -26,6 +28,9 @@ class Meta extends HtmlWidget {
     }
     if (http_equiv != null) {
       output += """http-equiv="$http_equiv" """;
+    }
+    if (property != null) {
+      output += """property="$property" """;
     }
     if (content != null) {
       output += """content="$content" """;
